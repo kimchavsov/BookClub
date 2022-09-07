@@ -1,0 +1,27 @@
+<% layout('layouts/boilerplate') %> 
+<body>
+  <div class="row">
+    <div class="col-8 offset-3">
+      <div class="card mb-3">
+        <img src="<%= book.cover %>" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= book.title %></h5>
+          <p class="card-text"><%= book.author %></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item text-muted">Progress: <%= book.progress %>/<%=book.page  %> </li>
+          <li class="list-group-item">Status: <%= book.status %></li>
+        </ul>
+        <div class="card-body">
+          <a href="/books/<%= book._id %>/edit" class="card-link btn btn-info">Edit </a>
+          <form class="d-inline" action="/books/<%= book._id %>?_method=DELETE" method="POST">
+            <button class="btn btn-danger">Delete</button>
+          </form>
+        </div>
+        <div class="card-footer text-muted">
+          Added: 11 days ago
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
