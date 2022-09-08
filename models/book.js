@@ -11,6 +11,11 @@ const BookSchema = new Schema({
     default: 'Bucket List'
   },
   page: Number,
+  progress: {
+    type: Number,
+    default: 0,
+    min: 0
+  }
 })
 
 module.exports = mongoose.model('Book', BookSchema)
