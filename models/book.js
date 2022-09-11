@@ -15,6 +15,10 @@ const BookSchema = new Schema({
     type: Number,
     default: 0,
     min: 0
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
 

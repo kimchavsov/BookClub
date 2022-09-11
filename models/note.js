@@ -6,11 +6,7 @@ const NoteSchema = new Schema({
   content: String,
   book: {
     type: Schema.Types.ObjectId,
-    ref:  'book'
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'user'
+    ref:  'Book'
   }
 })
 
