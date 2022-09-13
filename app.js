@@ -52,7 +52,6 @@ app.get('/books/:id', async (req, res) => {
 
 app.get('/books/:id/edit', async (req, res) => {
   const { id } = req.params
-  console.log(id);
   const book = await Book.findById(id)
   res.render('books/edit', { book })
 })
@@ -65,7 +64,6 @@ app.put('/books/:id', async (req, res) => {
 
 app.delete('/books/:id', async (req, res) => {
   const { id } = req.params
-  console.log(id);
   const delBook = await Book.findOneAndDelete(id)
   res.redirect('/books')
 })
