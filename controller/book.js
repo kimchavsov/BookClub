@@ -1,5 +1,11 @@
+const { db } = require('../models/book')
 const Book = require('../models/book')
 
+
+module.exports.renderBook = async (req, res) => {
+  const books = await Book.find({});
+  res.render('books/index', {books});
+}
 
 module.exports.createBook = async (req, res) => {
   const book = new Book(req.body.book)
