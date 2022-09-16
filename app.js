@@ -68,10 +68,6 @@ app.delete('/books/:id', async (req, res) => {
   res.redirect('/books')
 })
 
-app.get('/notes', async (req, res) => {
-  res.render('notes/index')
-})
-
 app.listen(3000, () => {
   console.log("Listening to port 3000")
 })
