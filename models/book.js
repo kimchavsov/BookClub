@@ -16,9 +16,9 @@ const BookSchema = new Schema({
     default: 0,
     min: 0
   },
-  user: {
+  note: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Note'
   }
 })
 
