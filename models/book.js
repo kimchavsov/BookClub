@@ -16,10 +16,14 @@ const BookSchema = new Schema({
     default: 0,
     min: 0
   },
-  note: {
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  note: [{
     type: Schema.Types.ObjectId,
     ref: 'Note'
-  }
+  }]
 })
 
 module.exports = mongoose.model('Book', BookSchema)
