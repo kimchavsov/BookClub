@@ -5,12 +5,12 @@ const BookSchema = new Schema({
   title: String,
   cover: String,
   author: String,
+  page: Number,
   status: {
     type: String,
     enum: ['Completed', 'Reading', 'Bucket List'],
     default: 'Bucket List'
   },
-  page: Number,
   progress: {
     type: Number,
     default: 0,
