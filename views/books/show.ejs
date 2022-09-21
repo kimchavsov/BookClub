@@ -9,8 +9,8 @@
           <p class="card-text"><%= book.author %></p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item text-muted">Progress: <%= book.progress %>/<%=book.page  %> </li>
-          <li class="list-group-item">Status: <%= book.status %></li>
+          <li class="list-group-item text-muted">Progress: <%= book.progress %>/<%=book.page  %> <Button class="btn btn-light" type="button" data-bs-toggle="modal" data-bs-target="#progressForm">Update</Button> </li>
+          <li class="list-group-item">Status: <%= book.status %> </li>
         </ul>
         <div class="card-body">
           <a href="/books/<%= book._id %>/edit" class="card-link btn btn-info">Edit </a>
@@ -24,4 +24,29 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal (Popup progress form)  -->
+  <div class="modal fade" id="progressForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Update Progress</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <form action="">
+          <div class="mb-3">
+            <label class="form-label" for="title">Current Progress</label>
+            <input class="form-control" type="number" id="title" name="book[title]" min="0" max="<%= book.page %>" required value="<%= book.progress %>">
+          </div>
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
