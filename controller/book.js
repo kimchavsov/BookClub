@@ -1,3 +1,4 @@
+const book = require('../models/book');
 const { db } = require('../models/book')
 const Book = require('../models/book')
 
@@ -19,7 +20,13 @@ module.exports.createBook = async (req, res) => {
 }
 
 module.exports.updateBook = async (req, res) => {
-  const book = await Book.findById(req.params.id, {...req.body.book})
+  const book = await Book.findByIdAndUpdate(req.params.id, {...req.body.book})
+  console.log(req.body)
+  res.redirect(`/books/${book._id}`)
+}
+
+module.exports.updateProgress = async (req, res) => {
+  const book = await Book.findByIdAndUpdate(req.params.id, {...req.body.book})
   res.redirect(`/books/${book._id}`)
 }
 

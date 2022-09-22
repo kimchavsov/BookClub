@@ -1,15 +1,20 @@
 const express = require('express')
-const router = express.router()
 const book = require('../controller/book')
 
-router.route('/books')
-  .get(book.viewAll)
- 
+const router = express.Router()
 
-router.route('/books/:id')
+
+router.route('/')
+  .get(book.viewAll)
+
+router.route('/:id')
   .get(book.viewBook)
   .post(book.createBook)
   .put(book.updateBook)
   .delete(book.deleteBook)
 
-router.get('/books/*', book.handleNotFound)
+router.post('/:id/progress', book.updateProgress)
+
+router.get('/*', book.handleNotFound)
+
+module.exports = router

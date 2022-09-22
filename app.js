@@ -5,6 +5,8 @@ const path = require('path')
 const methodOverride = require('method-override')
 const Book = require('./models/book')
 
+const booksRouter = require('./routes/book')
+
 mongoose.connect('mongodb://localhost:27017/bookshelf')
   .then(() => {
     console.log('Connected to the Database')
@@ -29,44 +31,47 @@ app.get('/', (req, res) => {
   res.render('home')
 })
 
-app.get('/books', async (req, res) => {
-  const books = await Book.find({})
-  res.render('books/index', {books})
-})
+app.use('/books', booksRouter);
 
-app.get('/books/new', async (req, res) => {
-  res.render('books/new')
-})
+// app.get('/books', async (req, res) => {
+//   const books = await Book.find({})
+//   res.render('books/index', {books})
+// })
 
-app.post('/books', async (req, res) => {
-  const book = new Book(req.body.book)
-  await book.save()
-  res.redirect('books')
-})
+// app.get('/books/new', async (req, res) => {
+//   res.render('books/new')
+// })
 
-app.get('/books/:id', async (req, res) => {
-  const { id } = req.params
-  const book = await Book.findById(id)
-  res.render('books/show', {book})
-})
+// app.post('/books', async (req, res) => {
+//   const book = new Book(req.body.book)
+//   await book.save()
+//   res.redirect('books')
+// })
 
-app.get('/books/:id/edit', async (req, res) => {
-  const { id } = req.params
-  const book = await Book.findById(id)
-  res.render('books/edit', { book })
-})
+// app.get('/books/:id', async (req, res) => {
+//   const { id } = req.params
+//   const book = await Book.findById(id)
+//   res.render('books/show', {book})
+// })
 
-app.put('/books/:id', async (req, res) => {
-  const { id } = req.params
-  const book = await Book.findByIdAndUpdate(id, {...req.body.book})
-  res.redirect(`/books/${book._id}`)
-})
+// app.get('/books/:id/edit', async (req, res) => {
+//   const { id } = req.params
+//   const book = await Book.findById(id)
+//   res.render('books/edit', { book })
+// })
 
-app.delete('/books/:id', async (req, res) => {
-  const { id } = req.params
-  const delBook = await Book.findOneAndDelete(id)
-  res.redirect('/books')
-})
+// app.put('/books/:id', async (req, res) => {
+//   const { id } = req.params
+//   const book = await Book.findByIdAndUpdate(id, {...req.body.book})
+//   console.log(req.body)
+//   res.redirect(`/books/${book._id}`)
+// })
+
+// app.delete('/books/:id', async (req, res) => {
+//   const { id } = req.params
+//   const delBook = await Book.findOneAndDelete(id)
+//   res.redirect('/books')
+// })
 
 app.listen(3000, () => {
   console.log("Listening to port 3000")
