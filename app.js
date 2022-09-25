@@ -16,7 +16,6 @@ mongoose.connect('mongodb://localhost:27017/bookshelf')
     console.log('Connection Error')
   })
 
-const db = mongoose.connection
 const app = express()
 
 app.engine('ejs', engine)
@@ -32,46 +31,6 @@ app.get('/', (req, res) => {
 })
 
 app.use('/books', booksRouter);
-
-// app.get('/books', async (req, res) => {
-//   const books = await Book.find({})
-//   res.render('books/index', {books})
-// })
-
-// app.get('/books/new', async (req, res) => {
-//   res.render('books/new')
-// })
-
-// app.post('/books', async (req, res) => {
-//   const book = new Book(req.body.book)
-//   await book.save()
-//   res.redirect('books')
-// })
-
-// app.get('/books/:id', async (req, res) => {
-//   const { id } = req.params
-//   const book = await Book.findById(id)
-//   res.render('books/show', {book})
-// })
-
-// app.get('/books/:id/edit', async (req, res) => {
-//   const { id } = req.params
-//   const book = await Book.findById(id)
-//   res.render('books/edit', { book })
-// })
-
-// app.put('/books/:id', async (req, res) => {
-//   const { id } = req.params
-//   const book = await Book.findByIdAndUpdate(id, {...req.body.book})
-//   console.log(req.body)
-//   res.redirect(`/books/${book._id}`)
-// })
-
-// app.delete('/books/:id', async (req, res) => {
-//   const { id } = req.params
-//   const delBook = await Book.findOneAndDelete(id)
-//   res.redirect('/books')
-// })
 
 app.listen(3000, () => {
   console.log("Listening to port 3000")
