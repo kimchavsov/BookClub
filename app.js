@@ -6,6 +6,7 @@ const methodOverride = require('method-override')
 const Book = require('./models/book')
 
 const booksRouter = require('./routes/book')
+const userRoute = require('./routes/user')
 
 mongoose.connect('mongodb://localhost:27017/bookshelf')
   .then(() => {
@@ -31,6 +32,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/books', booksRouter);
+app.use('/', userRoute)
 
 app.listen(3000, () => {
   console.log("Listening to port 3000")
