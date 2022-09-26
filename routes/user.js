@@ -9,6 +9,7 @@ router.route('/login')
       .get(user.renderLogin)
       // .post()
 
-
+router.route('/register')
+      .get(user.renderRegister)
 
 module.exports = router;
