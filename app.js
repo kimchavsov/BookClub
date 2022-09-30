@@ -4,6 +4,7 @@ const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 const path = require('path')
 const passport = require('passport')
+const LocalStrategy = require('passport-local')
 
 const Book = require('./models/book')
 const User = require('./models/user')
@@ -32,7 +33,7 @@ app.use(express.json())
 app.use(methodOverride('_method'))
 
 
-passport.user(new LocalStrategy(User.authenticate()))
+passport.use(new LocalStrategy(User.authenticate()))
 
 // for passport session support
 passport.serializeUser(User.serializeUser());

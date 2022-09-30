@@ -13,4 +13,8 @@ module.exports.handleRegister = async (req, res) => {
   const {email, username, password} = req.body;
   const user = new User({email, username})
   // TODO: do a password hashing before store to db
+  // with the help of passport js this library will help us hash the password to db
+  await user.setPassword(password)
+  await user.save();
+  res.redirect('user/login')
 }
