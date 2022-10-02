@@ -11,10 +11,7 @@ const router = express.Router();
 router.route('/login')
       .get(user.renderLogin)
       // .post()
-      .post(passport.authenticate('local', { failureRedirect: '/login' }),
-      function(req, res) {
-        res.redirect('/');
-      })
+      .post(passport.authenticate('local', { failureRedirect: '/login' }), user.handleLogin)
 
 router.route('/register')
       .get(user.renderRegister)
