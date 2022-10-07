@@ -17,4 +17,8 @@ router.route('/register')
       .get(user.renderRegister)
       .post(user.handleRegister)
 
+
+router.route('/logout')
+      .get(user.handleLogout)
+
 module.exports = router;

@@ -22,3 +22,11 @@ module.exports.handleRegister = async (req, res) => {
   await user.save();
   res.redirect('/login')
 }
+
+module.exports.handleLogout = (req, res) => {
+  req.logout((err) => {
+    if (err) { return next(err)}
+    
+    res.redirect('/');
+  })
+}

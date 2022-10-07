@@ -41,12 +41,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
 
+app.use(passport.initialize());
 app.use(session({
   name: 'mysession',
   secret: 'thisissecret',
   saveUninitialized: false,
   resave: false,
-  store: store
+  store: store,
+  cookie: {
+    httpOnly: true,
+    maxAge: 24 * 3600 * 1000
+  }
 }))
 
 
