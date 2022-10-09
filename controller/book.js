@@ -5,6 +5,7 @@ const Book = require('../models/book')
 
 module.exports.viewAll = async (req, res) => {
   const books = await Book.find({});
+  console.log();
   res.render('books/index', {books});
 }
 
