@@ -13,6 +13,7 @@ const User = require('./models/user');
 
 const booksRouter = require('./routes/book');
 const userRoute = require('./routes/user');
+const { isLoggedIn } = require('./middleware/auth');
 
 mongoose.connect('mongodb://localhost:27017/bookshelf')
   .then(() => {
@@ -45,7 +46,7 @@ app.use(passport.initialize());
 app.use(session({
   name: 'mysession',
   secret: 'thisissecret',
-  saveUninitialized: false,
+  saveUninitialized: true,
   resave: false,
   store: store,
   cookie: {
@@ -62,26 +63,26 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-app.use((req, res, next) => {
-  console.log(req.originalUrl)
-  if(!['/login', '/', '/register'].includes(req.originalUrl)) {
-    req.session.returnTo = req.originalUrl;
-    if (req.user) {
-      res.locals.currentUser = req.user;
-      next()
-    } else {
-      console.log('not login')
-      res.redirect('/login')
-    }
-  } 
-  next()
-})
+// app.use((req, res, next) => {
+//   console.log(req.originalUrl)
+//   if(!['/login', '/register'].includes(req.originalUrl)) {
+//     req.session.returnTo = req.originalUrl;
+//     if (req.user) {
+//       res.locals.currentUser = req.user;
+//       next()
+//     } else {
+//       res.redirect('/login')
+//     }
+//   } else {
+//     next()
+//   }
+// })
 
-app.get('/', (req, res) => {
+app.get('/', isLoggedIn(), (req, res) => {
   res.render('home');
 })
 
-app.use('/books', booksRouter);
+app.use('/books', (req, res) => booksRouter);
 app.use('/', userRoute);
 
 app.listen(3000, () => {
