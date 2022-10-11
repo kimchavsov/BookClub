@@ -78,11 +78,11 @@ passport.deserializeUser(User.deserializeUser());
 //   }
 // })
 
-app.get('/', isLoggedIn(), (req, res) => {
+app.get('/', isLoggedIn, (req, res) => {
   res.render('home');
 })
 
-app.use('/books', (req, res) => booksRouter);
+app.use('/books', isLoggedIn, booksRouter);
 app.use('/', userRoute);
 
 app.listen(3000, () => {
