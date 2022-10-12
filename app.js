@@ -29,7 +29,7 @@ const app = express();
 const store = MongoStore.create({
   mongoUrl: 'mongodb://localhost:27017/bookshelf',
   secret: 'testing',
-  touchAfter: 24 * 3600
+  touchAfter: 24 * 60 * 60
 })
 
 
@@ -44,13 +44,14 @@ app.use(methodOverride('_method'));
 
 app.use(passport.initialize());
 app.use(session({
+  store: store,
   name: 'mysession',
   secret: 'thisissecret',
   saveUninitialized: true,
   resave: false,
-  store: store,
   cookie: {
     httpOnly: true,
+    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 24 * 3600 * 1000
   }
 }))
@@ -78,12 +79,13 @@ passport.deserializeUser(User.deserializeUser());
 //   }
 // })
 
-app.get('/', isLoggedIn, (req, res) => {
+app.get('/', (req, res) => {
   res.render('home');
 })
 
-app.use('/books', isLoggedIn, booksRouter);
 app.use('/', userRoute);
+
+app.use('/books', booksRouter);
 
 app.listen(3000, () => {
   console.log("Listening to port 3000");
