@@ -76,7 +76,7 @@ app.get('/', (req, res) => {
 
 app.use('/', userRoute);
 
-app.use('/books', booksRouter);
+app.use('/books', isLoggedIn, booksRouter);
 
 app.listen(3000, () => {
   console.log("Listening to port 3000");

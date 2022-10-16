@@ -18,24 +18,24 @@ module.exports.viewBook = async (req, res) => {
 module.exports.createBook = async (req, res) => {
   const book = new Book(req.body.book)
   await book.save()
-  redirect('books')
+  res.redirect('books')
 }
 
 module.exports.updateBook = async (req, res) => {
   const book = await Book.findByIdAndUpdate(req.params.id, {...req.body.book})
   console.log(req.body)
-  res.redirect(`/books/${book._id}`)
+  res.redirect(`books/${book._id}`)
 }
 
 module.exports.updateProgress = async (req, res) => {
   const book = await Book.findByIdAndUpdate(req.params.id, {...req.body.book})
-  res.redirect(`/books/${book._id}`)
+  res.redirect(`books/${book._id}`)
 }
 
 module.exports.deleteBook = async (req, res) => {
   const { id } = req.params
   const delBook = await Book.findOneAndDelete(id)
-  res.redirect('/books')
+  res.redirect('books')
 }
 
 module.exports.handleNotFound = (req, res) => {
