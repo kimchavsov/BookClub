@@ -54,30 +54,15 @@ app.use(session({
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 24 * 3600 * 1000
   }
-}))
+}));
 
-
+app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()));
 
 // for passport session support
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-// app.use((req, res, next) => {
-//   console.log(req.originalUrl)
-//   if(!['/login', '/register'].includes(req.originalUrl)) {
-//     req.session.returnTo = req.originalUrl;
-//     if (req.user) {
-//       res.locals.currentUser = req.user;
-//       next()
-//     } else {
-//       res.redirect('/login')
-//     }
-//   } else {
-//     next()
-//   }
-// })
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
