@@ -7,6 +7,9 @@ const router = express.Router()
 router.route('/')
   .get(book.viewAll)
 
+router.route('/new')
+  .get(book.renderNew)
+
 router.route('/:id')
   .get(book.viewBook)
   .post(book.createBook)

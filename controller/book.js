@@ -15,6 +15,10 @@ module.exports.viewBook = async (req, res) => {
   res.render('books/show', {book})
 }
 
+module.exports.renderNew = async (req, res) => {
+  res.render('books/new')
+}
+
 module.exports.createBook = async (req, res) => {
   const book = new Book(req.body.book)
   await book.save()

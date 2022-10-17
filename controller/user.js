@@ -7,8 +7,9 @@ module.exports.renderLogin = (req, res) => {
 
 module.exports.handleLogin = (req, res) => {
   console.log('running this line')
-  console.log(req.isAuthenticated())
-  res.redirect('/books')
+  console.log(req.session.returnTo)
+  const redirectUrl = req.session.returnTo || '/books'
+  res.redirect(redirectUrl)
 }
 
 module.exports.renderRegister = (req, res) => {
