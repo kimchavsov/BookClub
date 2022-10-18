@@ -8,7 +8,6 @@ const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
 
-const Book = require('./models/book');
 const User = require('./models/user');
 
 const booksRouter = require('./routes/book');
@@ -50,11 +49,12 @@ app.use(session({
   saveUninitialized: true,
   resave: false,
   cookie: {
-    httpOnly: true,
+    // httpOnly: true,
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 24 * 3600 * 1000
   }
 }));
+
 
 app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()));
@@ -65,9 +65,10 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req, res, next) => {
-  if (!(['/', '/login', '/register'].includes(req.originalUrl))) {
+  if (!['/login', '/', '/register'].includes(req.originalUrl)) {
     console.log(req.originalUrl)
     req.session.returnTo = req.originalUrl
+    console.log('print this one' + req.session.returnTo)
   }
   res.locals.currentUser = req.user;
   next();
