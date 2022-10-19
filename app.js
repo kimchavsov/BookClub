@@ -40,8 +40,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride('_method'));
+app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(passport.initialize());
+
 app.use(session({
   store: store,
   name: 'mysession',
@@ -49,13 +50,14 @@ app.use(session({
   saveUninitialized: true,
   resave: false,
   cookie: {
-    // httpOnly: true,
+    httpOnly: true,
+    // secure: true,
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 24 * 3600 * 1000
   }
 }));
 
-
+app.use(passport.initialize());
 app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()));
 
@@ -67,7 +69,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next) => {
   if (!['/login', '/', '/register'].includes(req.originalUrl)) {
     console.log(req.originalUrl)
-    req.session.returnTo = req.originalUrl
+    req.session.returnTo = req.originalUrl;
     console.log('print this one' + req.session.returnTo)
   }
   res.locals.currentUser = req.user;
@@ -78,9 +80,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.render('home');
 })
-
 app.use('/', userRoute);
-
 app.use('/books', isLoggedIn, booksRouter);
 
 app.listen(3000, () => {

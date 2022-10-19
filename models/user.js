@@ -6,7 +6,6 @@ const passportMongoose = require('passport-local-mongoose')
 const UserSchema = new Schema ({
   username: String, 
   email: String,
-  password: String,
   books: [{
     type: Schema.Types.ObjectId,
     ref: 'Book'

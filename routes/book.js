@@ -1,5 +1,6 @@
 const express = require('express')
 const book = require('../controller/book')
+const { isLoggedIn } = require('../middleware/auth')
 
 const router = express.Router()
 
