@@ -7,9 +7,9 @@ module.exports.renderLogin = (req, res) => {
 
 module.exports.handleLogin = (req, res) => {
   console.log('running this line')
-  console.log(req.session.returnTo)
+  console.log(res.locals.returnTo)
   console.log(req.session.currentUser)
-  const redirectUrl = req.session.returnTo || '/books'
+  const redirectUrl = res.locals.returnTo || '/books'
   res.redirect(redirectUrl)
 }
 
