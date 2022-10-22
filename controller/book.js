@@ -27,7 +27,6 @@ module.exports.createBook = async (req, res) => {
 
 module.exports.updateBook = async (req, res) => {
   const book = await Book.findByIdAndUpdate(req.params.id, {...req.body.book})
-  console.log(req.body)
   res.redirect(`books/${book._id}`)
 }
 
