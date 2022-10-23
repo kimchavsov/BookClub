@@ -21,8 +21,18 @@ module.exports.renderNew = async (req, res) => {
 
 module.exports.createBook = async (req, res) => {
   const book = new Book(req.body.book)
-  await book.save()
-  res.redirect('books')
+  await book.save();
+  res.redirect('/books')
+}
+
+module.exports.renderEdit = async (req, res) => {
+  const { id } = req.params;
+  const book = await Book.findById(id);
+  if (!book) {
+    console.log("Not found");
+    return res.redirect('/books');
+  }
+  res.render('books/edit', {book})
 }
 
 module.exports.updateBook = async (req, res) => {
@@ -38,9 +48,9 @@ module.exports.updateProgress = async (req, res) => {
 module.exports.deleteBook = async (req, res) => {
   const { id } = req.params
   const delBook = await Book.findOneAndDelete(id)
-  res.redirect('books')
+  res.redirect('/books')
 }
 
 module.exports.handleNotFound = (req, res) => {
-  res.render('home')
+  res.redirect('/')
 }

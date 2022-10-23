@@ -7,18 +7,22 @@ const router = express.Router()
 
 router.route('/')
   .get(book.viewAll)
+  .post(book.createBook)
 
 router.route('/new')
   .get(book.renderNew)
 
 router.route('/:id')
   .get(book.viewBook)
-  .post(book.createBook)
   .put(book.updateBook)
   .delete(book.deleteBook)
 
-router.post('/:id/progress', book.updateProgress)
+router.route('/:id/edit')
+  .get(book.renderEdit)
 
-router.get('/*', book.handleNotFound)
+// Book progress 
+router.post('/:id/progress', book.updateProgress);
 
-module.exports = router
+router.get('/*', book.handleNotFound);
+
+module.exports = router;
