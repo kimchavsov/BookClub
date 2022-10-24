@@ -28,6 +28,20 @@
         </div>
       </div>
     </div>
+    <div class="col-6">
+      <% if (currentUser) {%> 
+      <h2>Leave a Review</h2>
+      <form class="form mb-3 validated-form" action="/" method="POST" novalidate>
+        <div class="mb-3">
+          <label class="form-label" for="body">Reviews:</label>
+          <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"></textarea required>
+        </div>
+        <button class="btn btn-success">Submit</button>
+      </form>
+      <% } %> 
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Modal (Popup progress form)  -->
