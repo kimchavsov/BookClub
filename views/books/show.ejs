@@ -18,7 +18,7 @@
           <li class="list-group-item">Status: <%= book.status %> </li>
         </ul>
         <div class="card-body">
-          <a href="/books/<%= book._id %>/edit" class="card-link btn btn-info">Edit </a>
+          <a href="/books/<%= book._id %>/edit" class="card-link btn btn-info">Edit</a>
           <form class="d-inline" action="/books/<%= book._id %>?_method=DELETE" method="POST">
             <button class="btn btn-danger">Delete</button>
           </form>
@@ -53,5 +53,4 @@
       </div>
     </div>
   </div>
-
 </body>

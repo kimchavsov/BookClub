@@ -4,7 +4,7 @@ const Book = require('../models/book')
 
 
 module.exports.viewAll = async (req, res) => {
-  const books = await Book.find({});
+  const books = await Book.find({owner: {$eq: req.user._id }});
   console.log();
   res.render('books/index', {books});
 }
@@ -20,9 +20,10 @@ module.exports.renderNew = async (req, res) => {
 }
 
 module.exports.createBook = async (req, res) => {
-  const book = new Book(req.body.book)
+  const book = new Book(req.body.book);
+  book.owner = req.user._id;
   await book.save();
-  res.redirect('/books')
+  res.redirect('/books');
 }
 
 module.exports.renderEdit = async (req, res) => {
