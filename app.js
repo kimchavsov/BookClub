@@ -12,6 +12,7 @@ const User = require('./models/user');
 
 const booksRouter = require('./routes/book');
 const userRoute = require('./routes/user');
+const noteRouter = require('./routes/note')
 const { isLoggedIn } = require('./middleware/auth');
 
 mongoose.connect('mongodb://localhost:27017/bookshelf')
@@ -82,6 +83,7 @@ app.get('/', (req, res) => {
 })
 app.use('/', userRoute);
 app.use('/books', isLoggedIn, booksRouter);
+app.use('/note', isLoggedIn, noteRouter);
 
 app.listen(3000, () => {
   console.log("Listening to port 3000");
