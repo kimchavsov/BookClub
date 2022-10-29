@@ -23,6 +23,9 @@ router.route('/:id/edit')
 // Book progress 
 router.post('/:id/progress', book.updateProgress);
 
+// route to handle note within the book section
+
+
 router.get('/*', book.handleNotFound);
 
 module.exports = router;

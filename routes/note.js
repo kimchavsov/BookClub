@@ -7,4 +7,6 @@ router.route('/')
   .post(console.log("hello"))
 
 
+router.route('/')
+
 module.exports = router

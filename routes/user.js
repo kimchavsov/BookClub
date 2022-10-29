@@ -7,7 +7,6 @@ const { handleReturnTo } = require('../middleware/auth')
 const router = express.Router();
 
 
-
 router.route('/login')
       .get(user.renderLogin)
       .post( handleReturnTo, passport.authenticate('local', { failureRedirect: '/login' }), user.handleLogin)

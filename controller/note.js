@@ -1,5 +1,11 @@
 const Note = require("../models/note")
 
+
+
+exports.module.renderNotes = async (req, res) => {
+  console.log("rendernote")
+}
+
 exports.module.createNote = async (req, res) => {
   const note = new Note(req.body.note);
   // Ref note to the book that take note on
