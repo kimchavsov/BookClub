@@ -10,7 +10,9 @@ module.exports.viewAll = async (req, res) => {
 }
 
 module.exports.viewBook = async (req, res) => {
-  const book = await Book.findById(req.params.id);
+  const book = await Book.findById(req.params.id).populate({
+    path: 'notes'
+  });
   console.log(req.isAuthenticated())
   res.render('books/show', {book})
 }
