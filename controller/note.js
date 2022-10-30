@@ -2,15 +2,19 @@ const Note = require("../models/note")
 
 
 
-exports.module.renderNotes = async (req, res) => {
-  console.log("rendernote")
+module.exports.renderNotes = async (req, res) => {
+  console.log("rendernote");
+  res.render('console.log')
 }
 
-exports.module.createNote = async (req, res) => {
-  const note = new Note(req.body.note);
-  // Ref note to the book that take note on
-  note = req.body.book;
-  await note.save();
-  // Redirect to book id
-  res.redirect('/books');
+module.exports.createNote = async (req, res) => {
+  // Handle note create from book
+  if (req.params.id) {
+    note = new Note(req.body.note);
+    note.book = req.params.id;
+    await note.save();
+    return res.redirect(`/books/${req.params.id}`);
+  }
+  // TODO: Handle create note from note creation
+
 }

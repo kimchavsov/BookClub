@@ -5,7 +5,7 @@ const NoteSchema = new Schema({
   title: String,
   content: String,
   book: {
-    type: Object.type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Book'
   }
 })

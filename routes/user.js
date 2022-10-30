@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 
 const user = require('../controller/user');
-const { handleReturnTo } = require('../middleware/auth')
+const { handleReturnTo } = require('../middleware/auth');
 
 const router = express.Router();
 

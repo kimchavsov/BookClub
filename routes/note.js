@@ -3,10 +3,10 @@ const book = require('../controller/book')
 
 const router = express.Router()
 
-router.route('/')
-  .post(console.log("hello"))
+// router.route('/')
+//   .post(console.log("hello"))
 
 
-router.route('/')
+// router.route('/')
 
 module.exports = router

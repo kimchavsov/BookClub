@@ -31,12 +31,12 @@
     <div class="col-8 offset-3">
       <% if (currentUser) {%> 
       <h2>Notes</h2>
-      <form class="form mb-3 validated-form" action="/" method="POST" novalidate>
+      <form class="form mb-3 validated-form" action="/books/<%= book._id %>/note" method="POST" novalidate>
         <div class="mb-3">
           <label class="form-label" for="title">Title</label>
-          <input class="form-control" type="text" name="title" id="title">
-          <label class="form-label" for="body">Notes:</label>
-          <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3"></textarea required>
+          <input class="form-control" type="text" name="note[title]" id="title">
+          <label class="form-label" for="content">Notes:</label>
+          <textarea class="form-control" name="note[content]" id="content" cols="50" rows="5"></textarea required>
         </div>
         <button class="btn btn-success">Submit</button>
       </form>
@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <!-- Modal (Popup progress form)  -->
+  <!-- Popup progress form to update progress  -->
   <div class="modal fade" id="progressForm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
