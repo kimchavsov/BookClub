@@ -20,7 +20,7 @@ const BookSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  note: [{
+  notes: [{
     type: Schema.Types.ObjectId,
     ref: 'Note'
   }]
