@@ -26,7 +26,7 @@ module.exports.createNote = async (req, res) => {
     book.notes.push(note);
     await note.save();
     await book.save();
-    return res.redirect(`/notes`)
+    return res.redirect(`/notes`);
   }
 
 }
