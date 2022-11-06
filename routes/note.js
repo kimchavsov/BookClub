@@ -11,4 +11,7 @@ router.route('/')
   .get(note.renderNotes)
   .post(note.createNote)
 
+router.route('/new')
+  .get(note.renderNewNote)
+
 module.exports = router

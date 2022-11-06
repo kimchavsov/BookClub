@@ -5,8 +5,11 @@ const Note = require("../models/note");
 
 
 module.exports.renderNotes = async (req, res) => {
-  console.log("rendernote");
-  res.render('notes/index')
+  res.render('notes/index');
+}
+
+module.exports.renderNewNote = async (req, res) => {
+  res.render("notes/new");
 }
 
 module.exports.createNote = async (req, res) => {
