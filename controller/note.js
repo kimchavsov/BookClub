@@ -6,7 +6,7 @@ const Note = require("../models/note");
 
 module.exports.renderNotes = async (req, res) => {
   console.log("rendernote");
-  res.render('console.log')
+  res.render('notes/index')
 }
 
 module.exports.createNote = async (req, res) => {

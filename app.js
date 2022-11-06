@@ -83,7 +83,7 @@ app.get('/', (req, res) => {
 })
 app.use('/', userRoute);
 app.use('/books', isLoggedIn, booksRouter);
-app.use('/note', isLoggedIn, noteRouter);
+app.use('/notes', isLoggedIn, noteRouter);
 
 app.listen(3000, () => {
   console.log("Listening to port 3000");

@@ -8,6 +8,7 @@ const router = express.Router();
 
 
 router.route('/')
+  .get(note.renderNotes)
   .post(note.createNote)
 
 module.exports = router
