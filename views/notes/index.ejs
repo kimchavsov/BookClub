@@ -1,6 +1,21 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
   <a class="btn btn-success" href="/notes/new/">New Note</a>
-
-  <h1>Coming Soon</h1>
+  
+  <div class="accordion">
+  <% for (const book of books) {%>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#<%= book._id %>" aria-expanded="true" aria-controls="<%= book._id %>">
+          <%= book.title %> 
+        </button>
+      </h2>
+      <div id="<%= book._id %>" class="accordion-collapse collapse show" aria-labelledby="<%= book._id %> " data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+      </div>
+    </div>
+    <% } %>  
+  </div>
 </div>

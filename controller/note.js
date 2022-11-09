@@ -5,7 +5,8 @@ const Note = require("../models/note");
 
 
 module.exports.renderNotes = async (req, res) => {
-  res.render('notes/index');
+  const books = await Book.find({owner: {$eq: req.user._id }});
+  res.render('notes/index', { books });
 }
 
 module.exports.renderNewNote = async (req, res) => {
