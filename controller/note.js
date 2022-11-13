@@ -5,7 +5,8 @@ const Note = require("../models/note");
 
 
 module.exports.renderNotes = async (req, res) => {
-  const books = await Book.find({owner: {$eq: req.user._id }});
+  const books = await Book.find({owner: {$eq: req.user._id }}).populate({path: 'notes'});
+  console.log(books);
   res.render('notes/index', { books });
 }
 
