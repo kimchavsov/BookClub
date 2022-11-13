@@ -12,12 +12,13 @@
       </h2>
       <div id="id<%= book._id %>" class="accordion-collapse collapse" aria-labelledby="<%= book.title %>" data-bs-parent="#accordionExample">
         <div class="accordion-body">
+          <a href="/books/<%= book._id %>" class="btn btn-success mb-3">View Book</a>
           <% for (const note of book.notes) {%> 
             <div class="card mb-3">
               <div class="card-body">
                 <h5 class="card-title"><%= note.title %></h5>
                 <p class="card-text"><%= note.content %> </p>
-                <a href="/notes/<%= note._id %>" class="btn btn-primary card-link">View</a>
+                <a href="/notes/<%= note._id %>" class="btn btn-primary card-link">View Note</a>
               </div>
             </div>
           <% } %> 

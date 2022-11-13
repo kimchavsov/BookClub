@@ -34,5 +34,8 @@ module.exports.createNote = async (req, res) => {
     await book.save();
     return res.redirect(`/notes`);
   }
+}
 
+module.exports.viewNote = async (req, res) => {
+  
 }
