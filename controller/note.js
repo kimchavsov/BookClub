@@ -37,5 +37,6 @@ module.exports.createNote = async (req, res) => {
 }
 
 module.exports.viewNote = async (req, res) => {
-  
+  const note =  await Note.findById(req.params.id);
+  res.render("notes/show", { note })
 }

@@ -1,0 +1,12 @@
+<div class="container">
+  <form action="/notes" method="POST" novalidate class="validated-form">
+    <div class="mb-3">
+      <h5><%= note.title %></h5>
+    </div>
+    <div class="mb-3">
+      <p><%= note.content %></p>
+    </div>
+    <button class="btn btn-success mb-3">Edit</button>
+    <button class="btn btn-danger mb-3">Delete</button>
+  </form>
+</div>

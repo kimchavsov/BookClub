@@ -14,4 +14,8 @@ router.route('/')
 router.route('/new')
   .get(note.renderNewNote)
 
+
+router.route('/:id')
+  .get(note.viewNote)
+
 module.exports = router
