@@ -40,3 +40,10 @@ module.exports.viewNote = async (req, res) => {
   const note =  await Note.findById(req.params.id);
   res.render("notes/show", { note })
 }
+
+module.exports.renderEdit = async (req, res) => {
+  const note = await Note.findById(req.params.id).populate('book');
+  const books = await Book.find({owner: {$eq: req.user._id }})
+
+  res.render("notes/edit", { books, note })
+}

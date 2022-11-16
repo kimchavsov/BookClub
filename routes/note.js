@@ -15,4 +15,7 @@ router.route('/new')
 router.route('/:id')
   .get(note.viewNote)
 
+router.route('/:id/edit')
+  .get(note.renderEdit)
+
 module.exports = router
