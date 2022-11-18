@@ -38,12 +38,18 @@ module.exports.createNote = async (req, res) => {
 
 module.exports.viewNote = async (req, res) => {
   const note =  await Note.findById(req.params.id);
-  res.render("notes/show", { note })
+  res.render("notes/show", { note });
 }
 
 module.exports.renderEdit = async (req, res) => {
   const note = await Note.findById(req.params.id).populate('book');
-  const books = await Book.find({owner: {$eq: req.user._id }})
+  const books = await Book.find({owner: {$eq: req.user._id }});
+  res.render("notes/edit", { books, note });
+}
 
-  res.render("notes/edit", { books, note })
+module.exports.updateNote = async (req, res) => {
+  // const note = await Note.findById(req.params.id);
+  // await Book.findById.apply(note.book._id);
+  const note = await Note.findByIdAndUpdate(req.params.id, {...req.body.note})
+  res.redirect(`/notes/${note._id}`)
 }

@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <div class="container">
   <h2>Edit Note</h2>
-  <form action="/notes/<%= note._id %>" method="POST" novalidate class="validated-form">
+  <form action="/notes/<%= note._id %>?_method=PUT" method="POST" novalidate class="validated-form">
     <div class="mb-3">
       <label class="form-label" for="title">Books</label>
       <!-- Drop down to select which book the note belong to -->
