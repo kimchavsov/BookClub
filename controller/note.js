@@ -48,8 +48,17 @@ module.exports.renderEdit = async (req, res) => {
 }
 
 module.exports.updateNote = async (req, res) => {
-  // const note = await Note.findById(req.params.id);
-  // await Book.findById.apply(note.book._id);
-  const note = await Note.findByIdAndUpdate(req.params.id, {...req.body.note})
-  res.redirect(`/notes/${note._id}`)
+  const note = await Note.findById(req.params.id);
+  if (note.book._id === req.body.note.book) {
+    await Note.findByIdAndUpdate(req.params.id, {...req.body.note});
+    res.redirect(`/notes/${note._id}`);
+  } else {
+    let book = await Book.findById(note.book._id);
+    console.log(book.notes)
+    await book.save();
+    note.update(req.body.note);
+    await note.save();
+    book = await Book.findById(note.book._id).notes.push(note);
+    await book.save();
+  }
 }
