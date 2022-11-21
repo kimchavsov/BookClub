@@ -10,8 +10,11 @@
       <div class="card mb-3">
         <p class="card-body"><%= note.content %></p>
       </div>
-      <a class="btn btn-success mb-2" href="/notes/<%= note._id %>/edit">Edit</a>
-      <a class="btn btn-danger mb-2">Delete</a>
+      
+      <form action="/notes/<%= note._id %>?_method=DELETE" method="POST">
+        <a class="btn btn-success mb-2" href="/notes/<%= note._id %>/edit">Edit</a>
+        <button class="btn btn-danger mb-2">Delete</button>
+      </form>
     </div>
   </div>
 </div>

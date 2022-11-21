@@ -15,6 +15,7 @@ router.route('/new')
 router.route('/:id')
   .get(note.viewNote)
   .put(note.updateNote)
+  .delete(note.handleDelete)
 
 router.route('/:id/edit')
   .get(note.renderEdit)

@@ -63,3 +63,10 @@ module.exports.updateNote = async (req, res) => {
     res.redirect(`/notes/${note._id}`)
   }
 }
+
+module.exports.handleDelete = async (req, res) => {
+  const note =  await Note.findById(req.params.id).populate('book');
+  await Book.findByIdAndUpdate(note.book._id.valueOf(), { $pull: {notes: req.params.id}})
+  await note.delete();
+  res.redirect('/notes')
+}
