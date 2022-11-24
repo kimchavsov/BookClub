@@ -30,6 +30,8 @@ router.post('/:id/progress', book.updateProgress);
 router.route('/:id/note')
   .post(note.createNote)
 
+router.route('/:id/note/:')
+
 router.get('/*', book.handleNotFound);
 
 module.exports = router;
