@@ -30,7 +30,7 @@ router.post('/:id/progress', book.updateProgress);
 router.route('/:id/note')
   .post(note.createNote)
 
-router.route('/:id/note/:')
+router.route('/:id/note/:id')
 
 router.get('/*', book.handleNotFound);
 
