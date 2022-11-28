@@ -52,10 +52,10 @@ module.exports.deleteBook = async (req, res) => {
   res.redirect('/books')
 }
 
-module.exports.updateNote = async (req, res) => {
-  const { bookId, noteId } = req.params;
-  
-}
+// module.exports.deleteNote = async (req, res) => {
+//   const { bookId, noteId } = req.params;
+
+// }
 
 
 module.exports.handleNotFound = (req, res) => {

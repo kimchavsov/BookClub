@@ -47,9 +47,12 @@
           <div class="card-body">
             <h5 class="card-title"><%= note.title %></h5>
             <p class="card-text">Content: <%= note.content %></p>
-            <form action="/books/<%= book._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-              <button class="btn btn-sm btn-danger">Delete</button>
-            </form>    
+            <div>
+              <a class="card-link btn btn-success" href="/notes/<%= note._id %>/edit">Edit</a>
+              <form class="d-inline" action="/books/<%= book._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-danger">Delete</button>
+              </form>  
+            </div>  
         </div>
       </div>
       <% } %> 
