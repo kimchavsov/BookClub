@@ -59,7 +59,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session())
-passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new LocalStrategy(({usernameField: 'email'}), User.authenticate()));
 
 // for passport session support
 passport.serializeUser(User.serializeUser());
