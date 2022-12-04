@@ -3,8 +3,6 @@ const express = require('express');
 const book = require('../controller/book');
 const note = require('../controller/note');
 
-const { isLoggedIn } = require('../middleware/auth');
-
 const router = express.Router();
 
 
@@ -29,9 +27,6 @@ router.post('/:id/progress', book.updateProgress);
 // route to handle note within the book section
 router.route('/:id/note')
   .post(note.createNote)
-
-// router.route('/:bookId/note/:noteId')
-//   .put(book.updateNote)
 
 router.get('/*', book.handleNotFound);
 
