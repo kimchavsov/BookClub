@@ -5,13 +5,11 @@ const Book = require('../models/book')
 
 module.exports.viewAll = async (req, res) => {
   const books = await Book.find({owner: {$eq: req.user._id }});
-  console.log();
   res.render('books/index', {books});
 }
 
 module.exports.viewBook = async (req, res) => {
   const book = await Book.findById(req.params.id).populate({path: 'notes'});
-  console.log(req.isAuthenticated())
   res.render('books/show', {book})
 }
 
@@ -30,7 +28,6 @@ module.exports.renderEdit = async (req, res) => {
   const { id } = req.params;
   const book = await Book.findById(id);
   if (!book) {
-    console.log("Not found");
     return res.redirect('/books');
   }
   res.render('books/edit', {book})
