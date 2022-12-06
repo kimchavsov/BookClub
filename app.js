@@ -67,6 +67,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 app.use((req, res, next) => {
+  res.locals.url = req.originalUrl;
   if (!['/login', '/', '/register'].includes(req.originalUrl)) {
     req.session.returnTo = req.originalUrl;
   }
