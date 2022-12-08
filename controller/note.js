@@ -1,8 +1,5 @@
 const Book = require("../models/book");
-const note = require("../models/note");
 const Note = require("../models/note");
-
-
 
 module.exports.renderNotes = async (req, res) => {
   const books = await Book.find({owner: {$eq: req.user._id }}).populate('notes');
