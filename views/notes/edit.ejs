@@ -4,7 +4,6 @@
   <form action="/notes/<%= note._id %>?_method=PUT" method="POST" novalidate class="validated-form">
     <div class="mb-3">
       <label class="form-label" for="title">Books</label>
-      <!-- Drop down to select which book the note belong to -->
       <select class="form-select" name="note[book]" aria-label="Default select example">
         <% for (const book of books) {%> 
           <option value="<%= book._id %>" <%= (book._id.equals(note.book._id))? "selected": ""%>><%= book.title %> </option>

@@ -7,13 +7,15 @@ const MongoStore = require('connect-mongo');
 const path = require('path');
 const passport = require('passport');
 const session = require('express-session');
+const { isLoggedIn } = require('./middleware/auth');
 
 const User = require('./models/user');
 
 const booksRouter = require('./routes/book');
 const userRoute = require('./routes/user');
 const noteRouter = require('./routes/note')
-const { isLoggedIn } = require('./middleware/auth');
+
+const app = express();
 
 mongoose.connect('mongodb://localhost:27017/bookshelf')
   .then(() => {
@@ -24,14 +26,13 @@ mongoose.connect('mongodb://localhost:27017/bookshelf')
     console.log('Connection Error')
   })
 
-const app = express();
+
 
 const store = MongoStore.create({
   mongoUrl: 'mongodb://localhost:27017/bookshelf',
   secret: 'testing',
   touchAfter: 24 * 60 * 60
 })
-
 
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
@@ -64,7 +65,6 @@ passport.use(new LocalStrategy(({usernameField: 'email'}), User.authenticate()))
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
 app.use((req, res, next) => {
   res.locals.url = req.originalUrl;
   if (!['/login', '/', '/register'].includes(req.originalUrl)) {
@@ -78,6 +78,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
   res.render('home');
 })
+
 app.use('/', userRoute);
 app.use('/books', isLoggedIn, booksRouter);
 app.use('/notes', isLoggedIn, noteRouter);
