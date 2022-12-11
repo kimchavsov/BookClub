@@ -23,7 +23,8 @@ const BookSchema = new Schema({
   notes: [{
     type: Schema.Types.ObjectId,
     ref: 'Note'
-  }]
+  }],
+  createdDate: Date
 })
 
 module.exports = mongoose.model('Book', BookSchema)

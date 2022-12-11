@@ -18,6 +18,7 @@ module.exports.renderNew = async (req, res) => {
 module.exports.createBook = async (req, res) => {
   const book = new Book(req.body.book);
   book.owner = req.user._id;
+  book.createdDate = new Date();
   await book.save();
   res.redirect('/books');
 }
