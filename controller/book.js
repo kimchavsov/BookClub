@@ -8,7 +8,9 @@ module.exports.viewAll = async (req, res) => {
 
 module.exports.viewBook = async (req, res) => {
   const book = await Book.findById(req.params.id).populate({path: 'notes'});
-  res.render('books/show', {book})
+  const today = new Date()
+  const differenceDays = Math.round((new Date().getTime() - book.createdDate.getTime()) / (1000 * 3600 * 24));
+  res.render('books/show', {book, differenceDays})
 }
 
 module.exports.renderNew = async (req, res) => {
