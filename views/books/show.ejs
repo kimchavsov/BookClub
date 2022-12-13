@@ -1,9 +1,9 @@
 <% layout('layouts/boilerplate') %> 
 <body>
   <div class="row">
-    <div class="col-8 offset-3">
-      <div class="card mb-3 w-75">
-        <img src="<%= book.cover %>" class="card-img-top" alt="...">
+    <div class="col-md-6 col-sm-12">
+      <div class="card mb-3 w-auto">
+        <img src="<%= book.cover %>" class="img-fluid" style="width: 50%" alt="...">
         <div class="card-body">
           <h5 class="card-title"><%= book.title %></h5>
           <p class="card-text"><%= book.author %></p>
@@ -29,33 +29,35 @@
         </div>
       </div>
     </div>
-    <div class="col-8 offset-3">
-      <% if (currentUser) {%> 
-      <h2>Notes</h2>
-      <form class="form mb-3 validated-form" action="/books/<%= book._id %>/note" method="POST" novalidate>
-        <div class="mb-3">
-          <label class="form-label" for="title">Title</label>
-          <input class="form-control" type="text" name="note[title]" id="title">
-          <label class="form-label" for="content">Notes:</label>
-          <textarea class="form-control" name="note[content]" id="content" cols="50" rows="5"></textarea required>
-        </div>
-        <button class="btn btn-success">Submit</button>
-      </form>
-      <% } %> 
-      <% for(let note of book.notes) { %> 
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title"><%= note.title %></h5>
-            <p class="card-text">Content: <%= note.content %></p>
-            <div>
-              <a class="card-link btn btn-success" href="/notes/<%= note._id %>/edit">Edit</a>
-              <form class="d-inline" action="/notes/<%= note._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-danger">Delete</button>
-              </form>  
-            </div>  
-        </div>
-      </div>
-      <% } %> 
+    <div class="col-md-6 col-sm-12">
+      <div class="container"> 
+        <% if (currentUser) {%> 
+          <h2>Notes</h2>
+          <form class="form mb-3 validated-form" action="/books/<%= book._id %>/note" method="POST" novalidate>
+            <div class="mb-3">
+              <label class="form-label" for="title">Title</label>
+              <input class="form-control" type="text" name="note[title]" id="title">
+              <label class="form-label" for="content">Notes:</label>
+              <textarea class="form-control" name="note[content]" id="content" cols="50" rows="5"></textarea required>
+            </div>
+            <button class="btn btn-success">Submit</button>
+          </form>
+          <% } %> 
+          <% for(let note of book.notes) { %> 
+            <div class="card mb-3">
+              <div class="card-body">
+                <h5 class="card-title"><%= note.title %></h5>
+                <p class="card-text">Content: <%= note.content %></p>
+                <div>
+                  <a class="card-link btn btn-success" href="/notes/<%= note._id %>/edit">Edit</a>
+                  <form class="d-inline" action="/notes/<%= note._id %>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                  </form>  
+                </div>  
+            </div>
+          </div>
+          <% } %> 
+      </div>  
     </div>
   </div>
 
