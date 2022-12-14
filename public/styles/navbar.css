@@ -6,12 +6,18 @@
 }
 
 .nav-link:hover {
-  border-bottom-color: rgba(255, 255, 255, 0.5);
   color: rgba(255, 255, 255, 0.8);
+  text-underline-offset: 0.5rem;
+  text-decoration: underline;
+  text-decoration-thickness: 0.25rem;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
 }
 
 .nav-link.active {
   color: white;
-  border-bottom-color: white;
+  text-underline-offset: 0.5rem;
+  text-decoration: underline;
+  text-decoration-thickness: 0.25rem;
+  text-decoration-color: white;
 }
 
