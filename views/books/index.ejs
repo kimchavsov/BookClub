@@ -9,11 +9,11 @@
           <div class="col-md-8 col-sm-12">
             <div class="card-body">
               <h5 class="card-title"><%= book.title %> </h5>
-              <p class="card-text"><%= book.author %> </p>
+              <p class="card-text d-none d-md-block"><%= book.author %> </p>
               <p class="card-text">
-                <small class="text-muted"> Progess: <%=book.progress %>/<%= book.page %>  </small>
+                <small class="text-muted d-none d-md-block"> Progess: <%=book.progress %>/<%= book.page %>  </small>
               </p>
-              <p class="card-text">Status: <%= book.status %> </p>
+              <p class="card-text d-none d-md-block">Status: <%= book.status %> </p>
               <a class="btn btn-primary" href="/books/<%= book._id %> ">View Book</a>
             </div>
           </div>
