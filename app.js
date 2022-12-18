@@ -26,8 +26,6 @@ mongoose.connect('mongodb://localhost:27017/bookshelf')
     console.log('Connection Error')
   })
 
-
-
 const store = MongoStore.create({
   mongoUrl: 'mongodb://localhost:27017/bookshelf',
   secret: 'testing',
@@ -73,7 +71,6 @@ app.use((req, res, next) => {
   res.locals.currentUser = req.user;
   next();
 })
-
 
 app.get('/', (req, res) => {
   res.render('home');
