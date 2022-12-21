@@ -28,3 +28,7 @@ Languages and Framework:
 Tools:
 - MongoDB
 - NodeJS
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
