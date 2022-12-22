@@ -10,6 +10,10 @@ First, install all the dependencies:
 npm install
 ```
 
+Setting up MongoDB:
+
+
+
 To start the application:
 
 ```bash
