@@ -10,10 +10,6 @@ First, install all the dependencies:
 npm install
 ```
 
-Setting up MongoDB:
-
-
-
 To start the application:
 
 ```bash
@@ -24,13 +20,14 @@ node app.js
 
 Languages and Framework:
 - HTML & CSS
+- Boostrap 5
 - EJS
 - JavaScript
 - Express
 - Passport.js for auth
 
 Tools:
-- MongoDB
+- MongoDB & Mongoose
 - NodeJS
 
 ## License
