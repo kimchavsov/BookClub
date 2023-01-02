@@ -17,6 +17,7 @@ const noteRouter = require('./routes/note')
 
 const app = express();
 
+// TODO: add env to project 
 mongoose.connect('mongodb://localhost:27017/bookshelf')
   .then(() => {
     console.log('Connected to the Database')
@@ -41,6 +42,7 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 
+// TODO: Improve security
 app.use(session({
   store: store,
   name: 'mysession',
@@ -48,8 +50,6 @@ app.use(session({
   saveUninitialized: true,
   resave: false,
   cookie: {
-    // httpOnly: true,
-    // secure: true,
     expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge: 24 * 3600 * 1000
   }
@@ -63,6 +63,8 @@ passport.use(new LocalStrategy(({usernameField: 'email'}), User.authenticate()))
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+// TODO: add logging
 app.use((req, res, next) => {
   res.locals.url = req.originalUrl;
   if (!['/login', '/', '/register'].includes(req.originalUrl)) {
